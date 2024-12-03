@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/cover.css">
+    <link rel="stylesheet" href="css/navbars.css">
+    <link rel="stylesheet" href="css/features.css">
+    <link rel="stylesheet" href="css/jumbotrons.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link href="css/carousel.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <div id="toggleMenu"></div>
+    <header id="header">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="hero">  
+            <div class="mb-auto">
+              <div>
+                <h3 class="float-md-start mb-0">TMDB</h3>
+                <nav class="navbar navbar-expand-lg fixed-top" aria-label="Thirteenth navbar example" id="navbar">
+                  <div class="container-fluid">
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                      </button>
+              
+                      <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                          <a class="navbar-brand col-lg-3 me-0" href="#header">Centered nav</a>
+                          <ul class="navbar-nav nav-masthead col-lg-6 justify-content-lg-center">
+                              <li class="nav-item">
+                                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="movies.html">Películas</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="series.html">Series</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-target="#exampleModalToggle" data-bs-dismiss="modal" data-bs-toggle="modal">Random Movies</a>
+                              </li>
+                          </ul>
+                          <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                              <form class="d-flex" role="search">
+                                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
+                                  <button class="btn btn-outline-dark" type="submit">Search</button>
+                              </form>
+                              <div class="search-results-container">
+                                  <ul class="list-group" id="resultsList"></ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </nav>
+              
+              </div>
+            </div>
+
+            <div class="col-6 text-white">
+              <h1 id="hero-title">Te damos la bienvenida</h1>
+              <p id="hero-overview" class="lead">Millones de películas, series y gente por descubrir.</p>
+              <p class="lead">
+                <a href="#" class="btn btn-lg btn-light fw-bold border-white bg-white">Learn more</a>
+              </p>
+            </div>
+          
+            <div class="mt-auto text-white-50">
+              <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+            </div>
+        </div>
+    </header>
+    <main data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true">
+      <div class="b-example-divider mb-3"></div>
+      <section>
+        <div class="container">
+          <div class="row g-2">
+            <h2>Now Playing</h2>
+            <div class="mt-2 border-bottom custom-border"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="nowPlayingContainer"></div>
+            <h2>Most popular</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="popularContainer"></div>
+            <h2>Top Rated</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="topRatedContainer"></div>
+            <h2>Upcoming</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="upcomingContainer"></div>
+          </div>
+        </div>  
+      </section>
+      <section>
+        <div class="container">
+          <div class="row g-2">
+            <h2>Airing Today</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="airingTodayContainer"></div>
+            <h2>On the Air</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="onTheAirContainer"></div>
+            <h2>Popular Tv Shows</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="popularTvContainer"></div>
+            <h2>Top Rated Tv Shows</h2>
+            <div class="mt-2 border-bottom"></div>
+            <div class="col d-flex gap-2 overflow-x-scroll p-3" id="topRatedTvContainer"></div>
+          </div>
+        </div>         
+      </section>
+      <!-- Modals for show movies and series -->
+      <div id="modalContainer"></div>
+      <!-- Modals for show movies and series -->
+
+    <!-- Random Movies app -->
+
+<!-- Modal 1 -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered  modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Elige una película al azar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="d-flex flex-column justify-content-center align-items-center text-center gap-3">
+            <div id="modalBody"></div>
+            <div><p id="infoMovie"></p></div>
+            <div><i class="bi bi-shuffle" id="randomBtn"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" id="showInfo">Ver info</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+       <!-- Random Movies app -->
+      
+        <div class="text-center d-flex flex-column justify-content-center">
+          <div class="mt-2 mb-4 border-bottom"></div>
+          <p class="h2">In theatres</p>
+          <p class="lead">Movies that are currently in theatres.</p>
+        </div>      
+      <section class="mb-5" id="carouselSection">
+        <div class="b-example-divider"></div>
+        <div class="container px-4 py-5">
+        <div id="myCarousel" class="carousel slide mb-6 w-75 mx-auto" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          </div>
+          <div class="carousel-inner" id="carousel">
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        </div>
+        <div class="b-example-divider"></div>
+    </section>
+    <section>
+      <div class="b-example-divider"></div>
+      <h2 class="pb-2 my-3 text-center">Guía de streaming para películas y series</h2>
+      <div class="container">
+        <div class="d-flex justify-content-around gap-2" id="cols"></div>
+        <div class="mt-4 border-bottom"></div>
+      </div>
+      <div class="container px-4 py-5">
+        <img src="images/dqK9Hag1054tghRQSqLSfrkvQnA.jpg" class="img-fluid rounded-3 mb-5" alt="155-the-dark-knight">
+        <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+          <div class="col d-flex flex-column align-items-start gap-2">
+            <h2 class="fw-bold text-body-emphasis">Descubre dónde ver nuevos contenidos, lo más popular y los próximos estrenos</h2>
+            <p class="text-body-secondary">El caballero oscuro está actualmente disponible para ver en retransmisión , alquilar y comprar en Argentina. JustWatch hace que sea fácil descubrir dónde puedes ver legalmente tus películas y series favoritas en línea.</p>
+            <a href="https://www.themoviedb.org/movie/155-the-dark-knight/watch?locale=ES" class="btn custom-color btn-lg">Ver Ficha</a>
+          </div>
+          <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 g-4" id="providersContainer"></div>
+          </div>
+        </div>
+      </div>  
+    </section>
+    <section>
+      <div class="b-example-divider"></div>
+      <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="images/Asset 2.svg" alt="tmdb logo" width="72" height="57">
+        <h1 class="display-5 fw-bold text-body-emphasis">Películas y series mejor puntuadas</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">Descubre las series y películas mejor puntuadas y mas votadas por los usuarios.</p>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav nav-pills mb-5 justify-content-center gap-3" id="nav-tab" role="tablist">
+          <button class="nav-link active custom-color" id="nav-movies-tab" data-bs-toggle="tab" data-bs-target="#nav-movies" type="button" role="tab" aria-controls="nav-movies" aria-selected="true">Top Rated Movies</button>
+          <button class="nav-link custom-color" id="nav-series-tab" data-bs-toggle="tab" data-bs-target="#nav-series" type="button" role="tab" aria-controls="nav-series" aria-selected="false">Top Rated Series</button>
+        </div>
+      </nav>
+    <div class="container px-3">
+      <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-movies" role="tabpanel" aria-labelledby="nav-movies-tab" tabindex="0">
+        <div class="table-responsive"> 
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Average</th>
+              <th scope="col">Vote count</th>
+              <th scope="col">Popularity</th>
+            </tr>
+          </thead>
+          <tbody id="tBodyMovies">
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-series" role="tabpanel" aria-labelledby="nav-series-tab" tabindex="0">
+        <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title</th>
+              <th scope="col">Average</th>
+              <th scope="col">Vote count</th>
+              <th scope="col">Popularity</th>
+            </tr>
+          </thead>
+          <tbody id="tBodySeries">
+          </tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+    </div>  
+    </section>
+    <section>
+      <div class="b-example-divider"></div>
+      <div class="text-center d-flex flex-column justify-content-center">
+        <p class="h2">Trending</p>
+        <p class="lead">the trending movies and TV shows</p>
+        <div class="mt-2 border-bottom"></div>
+      </div>
+      <div class="container px-4 py-5 d-flex flex-column justify-content-center gap-2" id="custom-cards">
+        <!-- Pestañas Principales para Películas y Series -->
+        <ul class="nav nav-pills justify-content-center mb-3 gap-3" id="main-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active custom-color" id="movies-tab" data-bs-toggle="pill" data-bs-target="#movies" type="button" role="tab" aria-controls="movies" aria-selected="true">Trending Movies</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link custom-color" id="series-tab" data-bs-toggle="pill" data-bs-target="#series" type="button" role="tab" aria-controls="series" aria-selected="false">Trending Tv Shows</button>
+          </li>
+        </ul>
+    
+        <!-- Contenido de las Pestañas Principales -->
+        <div class="tab-content" id="main-tabContent">
+          <!-- Tab Películas -->
+          <div class="tab-pane fade show active" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+            <!-- Sub-Pestañas para Películas -->
+            <ul class="nav justify-content-center mb-3 gap-3" id="movies-sub-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active custom-color" id="movies-day-tab" data-bs-toggle="pill" data-bs-target="#movies-day" type="button" role="tab" aria-controls="movies-day" aria-selected="true">Day trending</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link custom-color" id="movies-week-tab" data-bs-toggle="pill" data-bs-target="#movies-week" type="button" role="tab" aria-controls="movies-week" aria-selected="false">Week trending</button>
+              </li>
+            </ul>
+            <!-- Contenido de las Sub-Pestañas de Películas -->
+            <div class="tab-content" id="movies-sub-tabContent">
+              <div class="tab-pane fade show active" id="movies-day" role="tabpanel" aria-labelledby="movies-day-tab">
+                <div class="row row-cols-1 row-cols-lg-5 align-items-stretch g-4 py-5" id="trendingMoviesDay"></div>
+              </div>
+              <div class="tab-pane fade" id="movies-week" role="tabpanel" aria-labelledby="movies-week-tab">
+                <div class="row row-cols-1 row-cols-lg-5 align-items-stretch g-4 py-5" id="trendingMoviesWeek"></div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Tab Series -->
+          <div class="tab-pane fade" id="series" role="tabpanel" aria-labelledby="series-tab">
+            <!-- Sub-Pestañas para Series -->
+            <ul class="nav justify-content-center mb-3 gap-3" id="series-sub-tabs" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active custom-color" id="series-day-tab" data-bs-toggle="pill" data-bs-target="#series-day" type="button" role="tab" aria-controls="series-day" aria-selected="true">Day trending</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link custom-color" id="series-week-tab" data-bs-toggle="pill" data-bs-target="#series-week" type="button" role="tab" aria-controls="series-week" aria-selected="false">Week trending</button>
+              </li>
+            </ul>
+            <!-- Contenido de las Sub-Pestañas de Series -->
+            <div class="tab-content" id="series-sub-tabContent">
+              <div class="tab-pane fade show active" id="series-day" role="tabpanel" aria-labelledby="series-day-tab">
+                <div class="row row-cols-1 row-cols-lg-5 align-items-stretch g-4 py-5" id="trendingSeriesDay"></div>
+              </div>
+              <div class="tab-pane fade" id="series-week" role="tabpanel" aria-labelledby="series-week-tab">
+                <div class="row row-cols-1 row-cols-lg-5 align-items-stretch g-4 py-5" id="trendingSeriesWeek"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <div class="b-example-divider"></div>
+      <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom mb-5">Actores y actrices en tendencia</h2>
+      <nav>
+        <div class="nav justify-content-center gap-3 mb-5" id="nav-tab" role="tablist">
+          <button class="nav-link active custom-color" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tendencias del dia</button>
+          <button class="nav-link custom-color" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Tendencias de la semana</button>
+        </div>
+      </nav>
+      
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+          <div class="row g-5" id="popularPeopleDay"></div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+          <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" id="popularPeopleWeek"></div>
+        </div>
+      </div>
+      </div>  
+    </section>
+    <section>
+      <div class="b-example-divider"></div>
+      <div class="container">
+      <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Personalidades mas populares</h6>
+        <div id="container"></div>
+        <small class="d-block text-end mt-3">
+          <a href="#">All suggestions</a>
+        </small>
+      </div>
+      </div>
+    </section>
+    <section>
+      <div class="b-example-divider"></div>
+      <div class="container my-5">
+        <div class="p-5 text-center bg-body-tertiary rounded-3">
+          <img src="images/logo.svg" class="img-fluid mt-4 mb-3" width="200" height="200"/>
+          <h1 class="text-body-emphasis">Let's talk about TMDB</h1>
+          <p class="col-lg-8 mx-auto fs-5 text-muted">
+            The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of. Put simply, we live and breathe community and that's precisely what makes us different.
+          </p>
+          <div class="d-inline-flex gap-2 mb-5">
+            <button class="d-inline-flex align-items-center btn custom-color btn-lg px-4 rounded-pill" type="button">
+              <a class="text-decoration-none text-white text-center" href="https://www.themoviedb.org/about">About</a>
+              <svg class="bi ms-2" width="24" height="24"><use xlink:href="#arrow-right-short"/></svg>
+            </button>
+            <button class="btn custom-color btn-lg px-4 rounded-pill" type="button">
+              <a class="text-decoration-none text-white text-center" href="https://www.themoviedb.org/">Homepage</a>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="b-example-divider"></div>
+    </section>
+    </main>
+    <div class="b-example-divider"></div>
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+    </ul>
+    <p class="text-center text-body-secondary">&copy; 2024 Company, Inc</p>
+  </footer>
+</div>
+    <script type="module" src="js/app.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/lazysizes.min.js" async=""></script>
+    <script type="module" src="js/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
